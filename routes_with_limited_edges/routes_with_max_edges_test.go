@@ -2,7 +2,7 @@ package routes_with_limited_edges
 
 import (
 	"testing"
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 )
 
 func TestCountRoutesBetweenTwoVerticesWithMaxEdges2(t *testing.T) {

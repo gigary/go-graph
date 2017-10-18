@@ -1,7 +1,7 @@
 package routes_with_limited_edges
 
 import (
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 )
 
 func CountRoutesBetweenTwoVerticesWithExactNumberOfEdges(g graph.Graph, from graph.Vertex, to graph.Vertex, numberOfEdges int) int {

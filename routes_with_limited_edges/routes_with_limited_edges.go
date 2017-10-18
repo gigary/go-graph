@@ -1,7 +1,7 @@
 package routes_with_limited_edges
 
 import (
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 )
 
 type (

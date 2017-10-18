@@ -1,7 +1,7 @@
 package shortest_route
 
 import (
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 	"math"
 )
 

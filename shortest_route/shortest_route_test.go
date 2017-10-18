@@ -2,7 +2,7 @@ package shortest_route
 
 import (
 	"testing"
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 )
 
 func TestCalculateShortestRouteV2(t *testing.T) {
@@ -26,7 +26,7 @@ func TestCalculateShortestRouteV2(t *testing.T) {
 	for _, s := range samples {
 		actual := CalculateShortestRouteV2(getTestGraph(), s.from, s.to)
 		if actual != s.expected {
-			t.Errorf("Invalid shortest rout.\nExpected: %v\nGot: %v", s.expected, actual)
+			t.Errorf("Invalid shortest route.\nExpected: %v\nGot: %v", s.expected, actual)
 		}
 	}
 }
@@ -52,7 +52,7 @@ func TestCalculateShortestRouteV1(t *testing.T) {
 	for _, s := range samples {
 		actual := CalculateShortestRouteV1(getTestGraph(), s.from, s.to)
 		if actual != s.expected {
-			t.Errorf("Invalid shortest rout.\nExpected: %v\nGot: %v", s.expected, actual)
+			t.Errorf("Invalid shortest route.\nExpected: %v\nGot: %v", s.expected, actual)
 		}
 	}
 }

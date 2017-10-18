@@ -3,7 +3,7 @@ package exact_route_distance
 import (
 	"errors"
 	"strings"
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 )
 
 const (

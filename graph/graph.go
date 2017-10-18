@@ -1,4 +1,4 @@
-package go_graph_algorithms
+package graph
 
 import "sort"
 

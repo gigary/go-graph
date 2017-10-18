@@ -3,7 +3,7 @@ package exact_route_distance
 import (
 	"reflect"
 	"testing"
-	graph "github.com/gigary/go-graph-algorithms"
+	"github.com/gigary/go-graph-algorithms/graph"
 )
 
 func TestCalculationWithInvalidRoute(t *testing.T) {
