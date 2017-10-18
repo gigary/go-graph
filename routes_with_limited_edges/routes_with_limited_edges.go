@@ -1,28 +1,17 @@
-package routes_with_max_edges
+package routes_with_limited_edges
 
-import (
-	"sort"
-)
+import "sort"
 
 type (
 	Vertex string
 	Weight int
-	Route string
+	Route  string
 
-	Vertices []Vertex
-	Edge [2]Vertex
-	Graph map[Vertex]map[Vertex]Weight
+	Vertices   []Vertex
+	Edge       [2]Vertex
+	Graph      map[Vertex]map[Vertex]Weight
 	RouteCount map[Vertex]map[Vertex]map[int]int
 )
-
-func CountRoutesBetweenTwoVerticesWithMaxEdge(g Graph, from Vertex, to Vertex, maxEdge int) int {
-	all := buildAllRouteCountWithMaxEdge(g, maxEdge)
-	total := 0
-	for i := 1; i <= maxEdge; i++ {
-		total += all[from][to][i]
-	}
-	return total
-}
 
 func buildAllRouteCountWithMaxEdge(g Graph, maxEdge int) RouteCount {
 	c := RouteCount{}
