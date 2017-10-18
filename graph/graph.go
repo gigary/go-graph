@@ -1,11 +1,15 @@
 package graph
 
-import "sort"
+import (
+	"sort"
+	"strconv"
+	"strings"
+)
 
 type (
-	Vertex string
+	Vertex   string
 	Distance int
-	Route  string
+	Route    string
 
 	Vertices []Vertex
 	Edge     [2]Vertex
@@ -40,26 +44,31 @@ func (v Vertices) Less(i, j int) bool {
 	return string(v[i]) < string(v[j])
 }
 
-func GetTestGraph() Graph {
-	return Graph{
-		"A": {
-			"B": 5,
-			"D": 5,
-			"E": 7,
-		},
-		"B": {
-			"C": 4,
-		},
-		"C": {
-			"D": 8,
-			"E": 2,
-		},
-		"D": {
-			"C": 8,
-			"E": 6,
-		},
-		"E": {
-			"B": 3,
-		},
+func ParseGraphInput(input string) Graph {
+	g := Graph{}
+	edges := strings.Split(input, ",")
+	for _, edge := range edges {
+		edge := strings.Trim(edge, " ")
+		parts := strings.Split(edge, "")
+		value, ok := strconv.ParseInt(parts[2], 10, 32)
+		if ok != nil {
+			panic("Invalid graph input")
+		}
+		if g[Vertex(parts[0])] == nil {
+			g[Vertex(parts[0])] = map[Vertex]Distance{}
+		}
+		g[Vertex(parts[0])][Vertex(parts[1])] = Distance(value)
 	}
+	return g
+}
+
+func ParseEdgesFromRouteInput(r Route) []Edge {
+	edges := []Edge{}
+	parts := strings.Split(string(r), "-")
+	for i := range parts {
+		if i < len(parts)-1 {
+			edges = append(edges, Edge{Vertex(parts[i]), Vertex(parts[i+1])})
+		}
+	}
+	return edges
 }

@@ -44,7 +44,7 @@ func TestBuildRouteCountWithTwoEdge(t *testing.T) {
 			"E": {0: 1, 1: 0, 2: 0},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(graph.GetTestGraph(), 2)
+	actual := buildAllRouteCountWithMaxEdge(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), 2)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -88,7 +88,7 @@ func TestBuildRouteCountWithOneEdge(t *testing.T) {
 			"E": {0: 1, 1: 0},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(graph.GetTestGraph(), 1)
+	actual := buildAllRouteCountWithMaxEdge(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), 1)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -132,7 +132,7 @@ func TestBuildRouteCountWithNoEdge(t *testing.T) {
 			"E": {0: 1},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(graph.GetTestGraph(), 0)
+	actual := buildAllRouteCountWithMaxEdge(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), 0)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
