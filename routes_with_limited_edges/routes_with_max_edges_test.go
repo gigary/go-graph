@@ -2,11 +2,12 @@ package routes_with_limited_edges
 
 import (
 	"testing"
+	graph "github.com/gigary/go-graph-algorithms"
 )
 
 func TestCountRoutesBetweenTwoVerticesWithMaxEdges2(t *testing.T) {
 	expected := 4
-	actual := CountRoutesBetweenTwoVerticesWithMaxEdge(getTestGraph(), "A", "E", 3)
+	actual := CountRoutesBetweenTwoVerticesWithMaxEdge(graph.GetTestGraph(), "A", "E", 3)
 	if actual != expected {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -14,7 +15,7 @@ func TestCountRoutesBetweenTwoVerticesWithMaxEdges2(t *testing.T) {
 
 func TestCountRoutesBetweenTwoVerticesWithMaxEdges1(t *testing.T) {
 	expected := 0
-	actual := CountRoutesBetweenTwoVerticesWithMaxEdge(getTestGraph(), "D", "A", 10)
+	actual := CountRoutesBetweenTwoVerticesWithMaxEdge(graph.GetTestGraph(), "D", "A", 10)
 	if actual != expected {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -22,7 +23,7 @@ func TestCountRoutesBetweenTwoVerticesWithMaxEdges1(t *testing.T) {
 
 func TestCountRoutesBetweenTwoVerticesWithMaxEdges(t *testing.T) {
 	expected := 2
-	actual := CountRoutesBetweenTwoVerticesWithMaxEdge(getTestGraph(), "C", "C", 3)
+	actual := CountRoutesBetweenTwoVerticesWithMaxEdge(graph.GetTestGraph(), "C", "C", 3)
 	if actual != expected {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}

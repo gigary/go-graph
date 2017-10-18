@@ -1,6 +1,7 @@
 package routes_with_limited_edges
 
 import (
+	graph "github.com/gigary/go-graph-algorithms"
 	"reflect"
 	"testing"
 )
@@ -43,7 +44,7 @@ func TestBuildRouteCountWithTwoEdge(t *testing.T) {
 			"E": {0: 1, 1: 0, 2: 0},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(getTestGraph(), 2)
+	actual := buildAllRouteCountWithMaxEdge(graph.GetTestGraph(), 2)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -87,7 +88,7 @@ func TestBuildRouteCountWithOneEdge(t *testing.T) {
 			"E": {0: 1, 1: 0},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(getTestGraph(), 1)
+	actual := buildAllRouteCountWithMaxEdge(graph.GetTestGraph(), 1)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -131,40 +132,8 @@ func TestBuildRouteCountWithNoEdge(t *testing.T) {
 			"E": {0: 1},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(getTestGraph(), 0)
+	actual := buildAllRouteCountWithMaxEdge(graph.GetTestGraph(), 0)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
-	}
-}
-
-func TestGetAllVertices(t *testing.T) {
-	expected := []Vertex{"A", "B", "C", "D", "E"}
-	actual := getAllVertices(getTestGraph())
-	if !reflect.DeepEqual(actual, expected) {
-		t.Errorf("Wrongly parsed route.\nExpected: %v\nGot: %v", expected, actual)
-	}
-}
-
-func getTestGraph() Graph {
-	return Graph{
-		"A": {
-			"B": 5,
-			"D": 5,
-			"E": 7,
-		},
-		"B": {
-			"C": 4,
-		},
-		"C": {
-			"D": 8,
-			"E": 2,
-		},
-		"D": {
-			"C": 8,
-			"E": 6,
-		},
-		"E": {
-			"B": 3,
-		},
 	}
 }

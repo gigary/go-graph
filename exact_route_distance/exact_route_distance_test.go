@@ -1,12 +1,13 @@
 package exact_route_distance
 
 import (
-	"testing"
 	"reflect"
+	"testing"
+	graph "github.com/gigary/go-graph-algorithms"
 )
 
 func TestCalculationWithInvalidRoute(t *testing.T) {
-	_, err := Calculate(getTestGraph(), "A-E-D")
+	_, err := Calculate(graph.GetTestGraph(), "A-E-D")
 	if err == nil {
 		t.Errorf("Calculation should return error if route is invalid")
 	}
@@ -18,13 +19,13 @@ func TestCalculationWithInvalidRoute(t *testing.T) {
 }
 
 func TestCalculateDistanceWithValidRoute(t *testing.T) {
-	cases := map[Route]Weight{
+	cases := map[graph.Route]graph.Distance{
 		"A-B-C":     9,
 		"A-D":       5,
 		"A-D-C":     13,
 		"A-E-B-C-D": 22,
 	}
-	g := getTestGraph()
+	g := graph.GetTestGraph()
 	for r, expected := range cases {
 		actual, err := Calculate(g, r)
 		if err != nil {
@@ -37,8 +38,8 @@ func TestCalculateDistanceWithValidRoute(t *testing.T) {
 }
 
 func TestParseRoute(t *testing.T) {
-	route := Route("A-B-C")
-	expected := []Edge{
+	route := graph.Route("A-B-C")
+	expected := []graph.Edge{
 		{"A", "B"},
 		{"B", "C"},
 	}
@@ -47,28 +48,3 @@ func TestParseRoute(t *testing.T) {
 		t.Errorf("Wrongly parsed route.\nExpected: %v\nGot: %v", expected, actual)
 	}
 }
-
-func getTestGraph() Graph {
-	return Graph{
-		"A": {
-			"B": 5,
-			"D": 5,
-			"E": 7,
-		},
-		"B": {
-			"C": 4,
-		},
-		"C": {
-			"D": 8,
-			"E": 2,
-		},
-		"D": {
-			"C": 8,
-			"E": 6,
-		},
-		"E": {
-			"B": 3,
-		},
-	}
-}
-
