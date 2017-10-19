@@ -19,7 +19,7 @@ Each line of the file is one test case that comes with a graph definition and 10
 Run `go run main.go "test.data"` (assumed that `test.data` is the test file) in the root directory of the repo
 
 ### Run unit tests
-Run `go test -v ./...` in the root directory of the repo
+Run `go test -v ./...` (argument `-v` is optional) in the root directory of the repo
 
 ## Author
 [Michael Bui](mailto:mf.michaelbui@gmail.com) from [GigaryTeam](https://gigary.com)

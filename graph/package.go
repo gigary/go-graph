@@ -16,7 +16,7 @@ type (
 	Graph    map[Vertex]map[Vertex]Distance
 )
 
-func GetAllVertices(g Graph) []Vertex {
+func GetAllVertices(g Graph) Vertices {
 	vertices := Vertices{}
 	flags := map[Vertex]bool{}
 	for begin, neighbors := range g {

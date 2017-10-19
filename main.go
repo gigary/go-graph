@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/gigary/go-graph-algorithms/graph"
-	"os"
 	"bufio"
 	"fmt"
+	"github.com/gigary/go-graph-algorithms/graph"
+	"os"
 )
 
 func main() {
