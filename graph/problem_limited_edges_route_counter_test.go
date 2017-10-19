@@ -1,13 +1,12 @@
-package routes_with_limited_edges
+package graph
 
 import (
-	"github.com/gigary/go-graph-algorithms/graph"
 	"reflect"
 	"testing"
 )
 
-func TestBuildRouteCountWithTwoEdge(t *testing.T) {
-	expected := RouteCount{
+func TestLimitedEdgesRouteCounterWithTwoEdges(t *testing.T) {
+	expected := RouteCounts{
 		"A": {
 			"A": {0: 1, 1: 0, 2: 0},
 			"B": {0: 0, 1: 1, 2: 1},
@@ -44,14 +43,14 @@ func TestBuildRouteCountWithTwoEdge(t *testing.T) {
 			"E": {0: 1, 1: 0, 2: 0},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), 2)
+	actual := NewLimitedEdgesRouteCounter(getTestGraph(), 2).Count()
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
 }
 
-func TestBuildRouteCountWithOneEdge(t *testing.T) {
-	expected := RouteCount{
+func TestLimitedEdgesRouteCounterWithOneEdge(t *testing.T) {
+	expected := RouteCounts{
 		"A": {
 			"A": {0: 1, 1: 0},
 			"B": {0: 0, 1: 1},
@@ -88,14 +87,14 @@ func TestBuildRouteCountWithOneEdge(t *testing.T) {
 			"E": {0: 1, 1: 0},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), 1)
+	actual := NewLimitedEdgesRouteCounter(getTestGraph(), 1).Count()
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}
 }
 
-func TestBuildRouteCountWithNoEdge(t *testing.T) {
-	expected := RouteCount{
+func TestLimitedEdgesRouteCounterWithNoEdge(t *testing.T) {
+	expected := RouteCounts{
 		"A": {
 			"A": {0: 1},
 			"B": {0: 0},
@@ -132,7 +131,7 @@ func TestBuildRouteCountWithNoEdge(t *testing.T) {
 			"E": {0: 1},
 		},
 	}
-	actual := buildAllRouteCountWithMaxEdge(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), 0)
+	actual := NewLimitedEdgesRouteCounter(getTestGraph(), 0).Count()
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Counting is not correct.\nExpected: %v\nGot: %v", expected, actual)
 	}

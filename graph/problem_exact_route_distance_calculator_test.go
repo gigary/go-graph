@@ -1,13 +1,12 @@
-package exact_route_distance
+package graph
 
 import (
-	"github.com/gigary/go-graph-algorithms/graph"
 	"reflect"
 	"testing"
 )
 
-func TestCalculationWithInvalidRoute(t *testing.T) {
-	_, err := Calculate(graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"), graph.ParseEdgesFromRouteInput("A-E-D"))
+func TestExactRouteDistanceCalculatorWithInvalidRoute(t *testing.T) {
+	_, err := NewExactRouteDistanceCalculator(getTestGraph(), ParseEdgesFromRouteInput("A-E-D")).Calculate()
 	if err == nil {
 		t.Errorf("Calculation should return error if route is invalid")
 	}
@@ -18,16 +17,16 @@ func TestCalculationWithInvalidRoute(t *testing.T) {
 	}
 }
 
-func TestCalculateDistanceWithValidRoute(t *testing.T) {
-	cases := map[graph.Route]graph.Distance{
+func TestExactRouteDistanceCalculatorWithValidRoute(t *testing.T) {
+	cases := map[Route]Distance{
 		"A-B-C":     9,
 		"A-D":       5,
 		"A-D-C":     13,
 		"A-E-B-C-D": 22,
 	}
-	g := graph.ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7")
+	g := getTestGraph()
 	for r, expected := range cases {
-		actual, err := Calculate(g, graph.ParseEdgesFromRouteInput(r))
+		actual, err := NewExactRouteDistanceCalculator(g, ParseEdgesFromRouteInput(r)).Calculate()
 		if err != nil {
 			t.Errorf("Calculation should NOT return error if route is valid")
 		}

@@ -36,7 +36,7 @@ func TestParseGraphInput(t *testing.T) {
 
 func TestGetAllVertices(t *testing.T) {
 	expected := []Vertex{"A", "B", "C", "D", "E"}
-	actual := GetAllVertices(ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7"))
+	actual := GetAllVertices(getTestGraph())
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Wrongly parsed route.\nExpected: %v\nGot: %v", expected, actual)
 	}
@@ -52,4 +52,8 @@ func TestParseRoute(t *testing.T) {
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("Wrongly parsed route.\nExpected: %v\nGot: %v", expected, actual)
 	}
+}
+
+func getTestGraph() Graph {
+	return ParseGraphInput("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7")
 }
